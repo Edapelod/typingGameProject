@@ -6,22 +6,34 @@ const startScreen = document.querySelector('.game-intro')
 // variables
 const background = new Image()
 background.src = '../Img/background1.jpg'
-let squareY = -70
-let squareX = Math.random() * (canvas.width - 300)
+let quoteY = -70
+let quoteX = Math.random() * (canvas.width - 300)
 let isGameOver = false
 let gameId = 0
 let randomQuote = "hola"
-let newRandomQuotes = ["h","o","l","a","hhh"]
+let newRandomQuotes = ["T","o","l","a","hhh"]
+let score = 0
+let isCorrect = false
 
-const drawSquare = () => {
-    ctx.beginPath();
-    ctx.fillStyle = "white";
-    //ctx.fillRect(squareX, squareY, 350, 70);
-    ctx.font = '30px Arial';
-    ctx.fillText(randomQuote, squareX, squareY, 1350, 1570)
-    ctx.closePath();
-    
+// Quote 
+const drawQuote = () => {
+    ctx.beginPath()
+    ctx.fillStyle = "white"
+    ctx.font = '30px Arial'
+    ctx.fillText(randomQuote, quoteX, quoteY, 1350, 1570)
+    ctx.closePath()
 }
+
+// Score
+const drawScore = () => {
+    ctx.beginPath();
+    ctx.font = "30px sans-serif";
+    ctx.fillStyle = "green";
+    ctx.fillText(`Score : ${score}`, 10, 30);
+    ctx.closePath();
+  }
+
+
 //window onload
 window.onload = () => {
     document.getElementById("start-button").onclick = () => {
@@ -29,32 +41,44 @@ window.onload = () => {
       //song.play();
       startGame();
     }}
+
+
+    // Input 
+const theInput = document.getElementById("typeHere")
+theInput.onkeyup = (e) => {
+console.log(theInput.value)
+    if (randomQuote === e.target.value) {
+        console.log("yes");
+        theInput.value = "";
+        score += 1;
+        isCorrect = true;
+    }
+}
+
+
 //recursive function
 function startGame () {
     startScreen.style.display = "none";
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-    drawSquare();
-    squareY += 1.5
-    if (squareY > canvas.height) {
-        squareY = -70;
-        squareX = Math.random() * (canvas.width - 200);
+    drawQuote();
+    drawScore();
+    quoteY += 1.5
+    if (quoteY > canvas.height && theInput.value != randomQuote) {
+        isGameOver = true
+    }
+    if (quoteY > canvas.height || isCorrect) {
+        isCorrect = false
+        quoteY = -70;
+        quoteX = Math.random() * (canvas.width - 200);
         let nextQuote = newRandomQuotes[Math.floor(Math.random() * newRandomQuotes.length)]
         randomQuote = nextQuote
     }
+    if (score >= 2) {
+        quoteY += 3
+    } 
     if (isGameOver) {
         cancelAnimationFrame(gameId)
       } else {
-        // Ask for a new frame
         gameId = requestAnimationFrame(startGame)
-      }
-}
-const theInput = document.getElementById("typeHere")
-document.getElementById("typeHere").onkeyup = (e) => {
-
-console.log(theInput.value)
-    //console.log(e.target.value)
-    if (randomQuote === e.target.value) {
-        console.log("yes");
-        theInput.value = ""
-    }
+      };
 }
