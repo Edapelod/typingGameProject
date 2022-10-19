@@ -2,6 +2,8 @@ const canvas = document.querySelector('canvas')
 canvas.style.border = '3px solid black'
 const ctx = canvas.getContext('2d')
 const startScreen = document.querySelector('.game-intro')
+const restartBtn = document.querySelector("#restart")
+
 
 // variables
 const background = new Image()
@@ -11,9 +13,10 @@ let quoteX = Math.random() * (canvas.width - 300)
 let isGameOver = false
 let gameId = 0
 let randomQuote = "hola"
-let newRandomQuotes = ["T","o","l","a","hhh"]
+let newRandomQuotes = ["p","o","f","a","z","g","s","y"]
 let score = 0
 let isCorrect = false
+
 
 // Quote 
 const drawQuote = () => {
@@ -23,6 +26,7 @@ const drawQuote = () => {
     ctx.fillText(randomQuote, quoteX, quoteY, 1350, 1570)
     ctx.closePath()
 }
+
 
 // Score
 const drawScore = () => {
@@ -38,7 +42,7 @@ const drawScore = () => {
 window.onload = () => {
     document.getElementById("start-button").onclick = () => {
       console.log("starting");
-      //song.play();
+      restartBtn.style.display = "none"
       startGame();
     }}
 
@@ -74,11 +78,50 @@ function startGame () {
         randomQuote = nextQuote
     }
     if (score >= 2) {
-        quoteY += 3
+        quoteY += 0.15
+    }
+    if (score >= 4) {
+        quoteY += 0.2
+    }
+    if (score >= 6) {
+        quoteY += 0.3
     } 
+    if (score >= 8) {
+        quoteY += 0.4
+    } 
+    if (score >= 10) {
+        quoteY += 0.45
+    } 
+    if (score >= 12) {
+        quoteY += 0.5
+    } 
+    if (score >= 14) {
+        quoteY += 0.55
+    }
+    if (score >= 15) {
+        quoteY += 0.56
+    }
+    if (score >= 16) {
+        quoteY += 0.57
+    }
+    if (score >= 17) {
+        quoteY += 0.58
+    }
+
     if (isGameOver) {
-        cancelAnimationFrame(gameId)
+        cancelAnimationFrame(gameId);
+        restartBtn.style.display = "block"
       } else {
         gameId = requestAnimationFrame(startGame)
       };
 }
+
+function restart() {
+    isGameOver = false
+    startGame();
+    restartBtn.style.display = "none"
+}
+
+restartBtn.addEventListener("click", () =>{
+    restart();
+})
