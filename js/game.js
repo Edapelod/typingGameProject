@@ -16,8 +16,9 @@ let isGameOver = false
 let gameId = 0
 let randomQuote = "Never give up"
 //let newRandomQuotes1 = ["o"]
-let newRandomQuotes = ["Follow your dreams","Do the impossible","Believe in yourself","Stay strong","Don't stress. You got this.",
-"Let's get things done","Stay focused","Trust yourself", "Small steps every day", "Take the risk or lose the chance", "Impossible is for the unwilling", "Keep up"]
+let newRandomQuotes = ["Follow your dreams","Do the impossible","Believe in yourself","Stay strong","Don't stress", "You got this",
+"Let's get things done","Stay focused","Trust yourself", "Small steps every day", "Take the risk or lose the chance", "Impossible is for the unwilling", "Keep it up",
+ "Nothing can stop me", "No pain no gain", "Stand up and try again", "Today will be a good day", "Enjoy the moment", "Live in the present"]
 let score = 0
 let isCorrect = false
 const song = new Audio()
@@ -25,9 +26,10 @@ song.src = "../songs/WalkOfLife.mp3"
 song.volume = 0.1;
 const song2 = new Audio()
 song2.src = "../songs/PushItToTheLimit.mp3"
-song2.volume = 0.3
+song2.volume = 0.2
 const song3 = new Audio()
 song3.src = "../songs/Enough.mp3"
+song3.volume = 0.2
 
 
 // Quote 
@@ -122,19 +124,19 @@ function startGame () {
         quoteY += 0.11
     } 
     if (score >= 12) {
-        quoteY += 0.12
+        quoteY += 0.115
     } 
     if (score >= 14) {
-        quoteY += 0.125
+        quoteY += 0.1155
     }
     if (score >= 15) {
-        quoteY += 0.130
+        quoteY += 0.12
     }
     if (score >= 16) {
-        quoteY += 0.135
+        quoteY += 0.122
     }
     if (score >= 17) {
-        quoteY += 0.140
+        quoteY += 0.125
     }
     if (score >= 25) {
         song3.play()
@@ -171,8 +173,9 @@ function restart() {
     isGameOver = false
     score = 0
     randomQuote = "Never give up"
-    newRandomQuotes = ["Follow your dreams","Do the impossible","Believe in yourself","Stay strong","Don't stress. You got this.",
-    "Let's get things done","Stay focused","Trust yourself", "Small steps every day", "Take the risk or lose the chance", "Impossible is for the unwilling"]
+    newRandomQuotes = ["Follow your dreams","Do the impossible","Believe in yourself","Stay strong","Don't stress", "You got this",
+    "Let's get things done","Stay focused","Trust yourself", "Small steps every day", "Take the risk or lose the chance", "Impossible is for the unwilling", "Keep it up",
+    "Nothing can stop me", "No pain no gain", "Stand up and try again", "Today will be a good day", "Enjoy the moment", "Live in the present"]
     canvas.style.display = "block"
     theInput.style.display = "block"
     startGame();
