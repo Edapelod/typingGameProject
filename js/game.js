@@ -18,7 +18,8 @@ let randomQuote = "Never give up"
 //let newRandomQuotes1 = ["o"]
 let newRandomQuotes = ["Follow your dreams","Do the impossible","Believe in yourself","Stay strong","Don't stress", "You got this",
 "Let's get things done","Stay focused","Trust yourself", "Small steps every day", "Take the risk or lose the chance", "Impossible is for the unwilling", "Keep it up",
- "Nothing can stop me", "No pain no gain", "Stand up and try again", "Today will be a good day", "Enjoy the moment", "Live in the present"]
+ "Nothing can stop me", "No pain no gain", "Stand up and try again", "Today will be a good day", "Enjoy the moment", "Live in the present", "Pull through", "Keep pushing",
+"You can do it", "Keep going!", "Do your best", "No more excuses", "Make yourself proud", "Give it all", "Remember why you started", "Now, later is never"]
 let score = 0
 let isCorrect = false
 const song = new Audio()
@@ -175,7 +176,8 @@ function restart() {
     randomQuote = "Never give up"
     newRandomQuotes = ["Follow your dreams","Do the impossible","Believe in yourself","Stay strong","Don't stress", "You got this",
     "Let's get things done","Stay focused","Trust yourself", "Small steps every day", "Take the risk or lose the chance", "Impossible is for the unwilling", "Keep it up",
-    "Nothing can stop me", "No pain no gain", "Stand up and try again", "Today will be a good day", "Enjoy the moment", "Live in the present"]
+     "Nothing can stop me", "No pain no gain", "Stand up and try again", "Today will be a good day", "Enjoy the moment", "Live in the present", "Pull through", "Keep pushing",
+    "You can do it", "Keep going!", "Do your best", "No more excuses", "Make yourself proud", "Give it all", "Remember why you started", "Now, later is never"]
     canvas.style.display = "block"
     theInput.style.display = "block"
     startGame();
