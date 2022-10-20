@@ -3,14 +3,33 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-
 } 
 
 .game-intro {
-    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 0% 10%;
+}
+
+#start-button {
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .randomQuote {
     font-size: 1150px;
+}
+
+.computer {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#typeHere {
+    display:flex;
+    justify-content:center;
+    align-items: bottom;
 }

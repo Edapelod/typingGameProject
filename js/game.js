@@ -1,8 +1,9 @@
 const canvas = document.querySelector('canvas')
-canvas.style.border = '3px solid black'
+canvas.style.border = '2px solid black'
 const ctx = canvas.getContext('2d')
 const startScreen = document.querySelector('.game-intro')
 const restartBtn = document.querySelector("#restart")
+
 
 
 // variables
@@ -40,8 +41,13 @@ const drawScore = () => {
 
 //window onload
 window.onload = () => {
+    canvas.style.display= "none"
+    restartBtn.style.display = "none"
+    theInput.style.display = "none"
     document.getElementById("start-button").onclick = () => {
       console.log("starting");
+      theInput.style.display = "block"
+      canvas.style.display= "block"
       restartBtn.style.display = "none"
       startGame();
     }}
@@ -107,6 +113,9 @@ function startGame () {
     if (score >= 17) {
         quoteY += 0.58
     }
+    if (score >= 25) {
+        isGameOver = true
+    }
 
     if (isGameOver) {
         cancelAnimationFrame(gameId);
@@ -116,12 +125,18 @@ function startGame () {
       };
 }
 
+
+// restart
 function restart() {
     isGameOver = false
     startGame();
     restartBtn.style.display = "none"
+    score = 0;
+    theInput.value = ""
 }
 
+
+// restart button
 restartBtn.addEventListener("click", () =>{
     restart();
 })
