@@ -1,15 +1,30 @@
 body {
-    padding: 0;
+    padding: 0%;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url(../Img/background1.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
 } 
 
+.h1 {
+    float: top;
+}
 .game-intro {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0% 10%;
+    padding: 0;
+    max-width: 90%;
+    max-height: 90%;
+}
+.canvas {
+    max-width: 90%;
+    max-height: 90%;
 }
 
 #start-button {
@@ -22,14 +37,29 @@ body {
     font-size: 1150px;
 }
 
-.computer {
-    display:flex;
-    justify-content: center;
-    align-items: center;
-}
-
 #typeHere {
     display:flex;
     justify-content:center;
     align-items: bottom;
+}
+
+.instructions {
+    font-family: sans-serif;
+    font-size: 30px;
+    line-height: 50px;
+}
+
+#game-board{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.win {
+    height: 300px;
+    width: 500px;
+    background-image: url("../Img/win.jpg");
+    background-size: cover;
+    background-position: center;
 }

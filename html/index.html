@@ -8,24 +8,39 @@
     <title>Hola hola</title>
 </head>
 <body>
-    <div class="game-intro">
-        <h1>hola</h1>
-        <img src="../Img/background1.jpg" width="1600" height="800" alt="" class="computer"  />
-        <br />
-        <button id="start-button">StartGame</button>
-        <p></p>
-        <img src="" alt="" class="" />
+    <div class="game-intro" >
+        <div>
+            <h1><span style="color:white">Typing-motivation game</span></h1>
+        </div>
+
+        <div class="instructions"><span style= "color:white"> How to play:</span>
+        <ul> <span style="color:white">
+            <li>Inside the box that will show below, you need to type the words that will be falling from the top of your screen</li>
+            <li>Every time you type the word correctly the falling-word will disappear and will continue to the next one</li>
+            <li>If the word reaches the bottom of your screen before you have typed it, you lose the game</li>
+            </span>
+        </ul>
+        </div>
+        <div>
+             <button id="start-button">StartGame</button>
+        </div>
     </div>
     
     <div id="game-board">
-        <canvas id="canvas" width= "1400" height="700"></canvas>
-    </div>
-    <div class="quotes">
-        <p></p>
-    </div>
-    <div id="quotesInput" class="quotes-input">
+        <div>
+               <canvas id="canvas" width= "1200" height="700"></canvas>
+        </div>
+        <div>
+                <div id="quotesInput" class="quotes-input">
         <input id="typeHere" />
     </div>
+        </div>
+     
+    </div>
+    <div class="win">
+        <p>Congratulations, you win!!</p>
+    </div>
+
     <button id="restart">Restart Game</button>
     <script type="text/javascript" src="../js/game.js"></script>
 </body>

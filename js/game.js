@@ -3,6 +3,7 @@ canvas.style.border = '2px solid black'
 const ctx = canvas.getContext('2d')
 const startScreen = document.querySelector('.game-intro')
 const restartBtn = document.querySelector("#restart")
+const youWin = document.querySelector(".win")
 
 
 
@@ -13,10 +14,18 @@ let quoteY = -70
 let quoteX = Math.random() * (canvas.width - 300)
 let isGameOver = false
 let gameId = 0
-let randomQuote = "hola"
-let newRandomQuotes = ["p","o","f","a","z","g","s","y"]
+let randomQuote = "Never give up"
+let newRandomQuotes = ["o"]
+let newRandomQuotes1 = ["Follow your dreams","Do the impossible","Believe in yourself","Stay strong","Don't stress. You got this.",
+"Let's get things done","Stay focused","Trust yourself", "Small steps every day", "Take the risk or lose the chance", "Impossible is for the unwilling"]
 let score = 0
 let isCorrect = false
+const song = new Audio()
+song.src = "../songs/WalkOfLife.mp3"
+song.volume = 0.1;
+const song2 = new Audio()
+song2.src = "../songs/PushItToTheLimit.mp3"
+song2.volume = 0.3
 
 
 // Quote 
@@ -41,14 +50,18 @@ const drawScore = () => {
 
 //window onload
 window.onload = () => {
+    youWin.style.display= "none"
     canvas.style.display= "none"
     restartBtn.style.display = "none"
     theInput.style.display = "none"
     document.getElementById("start-button").onclick = () => {
       console.log("starting");
+      document.querySelector("body").style.background= "white";
       theInput.style.display = "block"
       canvas.style.display= "block"
       restartBtn.style.display = "none"
+      youWin.style.display= "none"
+      song.play();
       startGame();
     }}
 
@@ -68,18 +81,19 @@ console.log(theInput.value)
 
 //recursive function
 function startGame () {
+    youWin.style.display= "none"
     startScreen.style.display = "none";
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
     drawQuote();
     drawScore();
-    quoteY += 1.5
+    quoteY += 0.7
     if (quoteY > canvas.height && theInput.value != randomQuote) {
         isGameOver = true
     }
     if (quoteY > canvas.height || isCorrect) {
         isCorrect = false
         quoteY = -70;
-        quoteX = Math.random() * (canvas.width - 200);
+        quoteX = Math.random() * (canvas.width - 300);
         let nextQuote = newRandomQuotes[Math.floor(Math.random() * newRandomQuotes.length)]
         randomQuote = nextQuote
     }
@@ -93,6 +107,8 @@ function startGame () {
         quoteY += 0.3
     } 
     if (score >= 8) {
+        song.pause();
+        song2.play();
         quoteY += 0.4
     } 
     if (score >= 10) {
@@ -114,7 +130,10 @@ function startGame () {
         quoteY += 0.58
     }
     if (score >= 25) {
-        isGameOver = true
+        youWin.style.display= "block"
+        canvas.style.display= "none"
+        isGameOver = true;
+
     }
 
     if (isGameOver) {
@@ -129,10 +148,13 @@ function startGame () {
 // restart
 function restart() {
     isGameOver = false
+    score = 0
+    randomQuote = "Never give up"
+    newRandomQuotes = ["o"]
+    canvas.style.display = "block"
     startGame();
     restartBtn.style.display = "none"
-    score = 0;
-    theInput.value = ""
+    theInput.value = "";
 }
 
 
