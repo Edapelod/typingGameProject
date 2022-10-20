@@ -15,9 +15,9 @@ let quoteX = Math.random() * (canvas.width - 300)
 let isGameOver = false
 let gameId = 0
 let randomQuote = "Never give up"
-let newRandomQuotes = ["o"]
-let newRandomQuotes1 = ["Follow your dreams","Do the impossible","Believe in yourself","Stay strong","Don't stress. You got this.",
-"Let's get things done","Stay focused","Trust yourself", "Small steps every day", "Take the risk or lose the chance", "Impossible is for the unwilling"]
+//let newRandomQuotes1 = ["o"]
+let newRandomQuotes = ["Follow your dreams","Do the impossible","Believe in yourself","Stay strong","Don't stress. You got this.",
+"Let's get things done","Stay focused","Trust yourself", "Small steps every day", "Take the risk or lose the chance", "Impossible is for the unwilling", "Keep up"]
 let score = 0
 let isCorrect = false
 const song = new Audio()
@@ -26,6 +26,8 @@ song.volume = 0.1;
 const song2 = new Audio()
 song2.src = "../songs/PushItToTheLimit.mp3"
 song2.volume = 0.3
+const song3 = new Audio()
+song3.src = "../songs/Enough.mp3"
 
 
 // Quote 
@@ -88,57 +90,71 @@ function startGame () {
     drawScore();
     quoteY += 0.7
     if (quoteY > canvas.height && theInput.value != randomQuote) {
-        isGameOver = true
+        isGameOver = true;
+        song.pause();
+        song.currentTime = 0;
+        song2.pause();
+        song2.currentTime = 0;
     }
     if (quoteY > canvas.height || isCorrect) {
         isCorrect = false
         quoteY = -70;
-        quoteX = Math.random() * (canvas.width - 300);
+        quoteX = Math.random() * (canvas.width - 400);
         let nextQuote = newRandomQuotes[Math.floor(Math.random() * newRandomQuotes.length)]
         randomQuote = nextQuote
     }
     if (score >= 2) {
-        quoteY += 0.15
+        quoteY += 0.05
     }
     if (score >= 4) {
-        quoteY += 0.2
+        quoteY += 0.007
     }
     if (score >= 6) {
-        quoteY += 0.3
+        quoteY += 0.1
     } 
     if (score >= 8) {
         song.pause();
+        song.currentTime = 0
         song2.play();
-        quoteY += 0.4
+        quoteY += 0.105
     } 
     if (score >= 10) {
-        quoteY += 0.45
+        quoteY += 0.11
     } 
     if (score >= 12) {
-        quoteY += 0.5
+        quoteY += 0.12
     } 
     if (score >= 14) {
-        quoteY += 0.55
+        quoteY += 0.125
     }
     if (score >= 15) {
-        quoteY += 0.56
+        quoteY += 0.130
     }
     if (score >= 16) {
-        quoteY += 0.57
+        quoteY += 0.135
     }
     if (score >= 17) {
-        quoteY += 0.58
+        quoteY += 0.140
     }
     if (score >= 25) {
+        song3.play()
         youWin.style.display= "block"
         canvas.style.display= "none"
+        theInput.style.display= "none"
+        song2.pause();
+        song2.currentTime = 0;
         isGameOver = true;
+
 
     }
 
     if (isGameOver) {
         cancelAnimationFrame(gameId);
-        restartBtn.style.display = "block"
+        restartBtn.style.display = "block";
+        song.pause();
+        song.currentTime = 0;
+        song2.pause();
+        song2.currentTime = 0;
       } else {
         gameId = requestAnimationFrame(startGame)
       };
@@ -147,11 +163,18 @@ function startGame () {
 
 // restart
 function restart() {
+    song3.pause();
+    song3.currentTime= 0;
+    song2.pause();
+    song2.currentTime = 0;
+    song.play();
     isGameOver = false
     score = 0
     randomQuote = "Never give up"
-    newRandomQuotes = ["o"]
+    newRandomQuotes = ["Follow your dreams","Do the impossible","Believe in yourself","Stay strong","Don't stress. You got this.",
+    "Let's get things done","Stay focused","Trust yourself", "Small steps every day", "Take the risk or lose the chance", "Impossible is for the unwilling"]
     canvas.style.display = "block"
+    theInput.style.display = "block"
     startGame();
     restartBtn.style.display = "none"
     theInput.value = "";
